@@ -20,6 +20,7 @@ const ProductList = (props) => {
             src={item.src}
             title={item.title}
             price={item.price}
+            rating={item.rating}
             count={counter}
           />
         ))}
