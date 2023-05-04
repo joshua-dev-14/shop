@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import ProductList from "./components/ProductList";
+import productData from "./data";
+import { useState } from "react";
+import './app.css'
+
+let counter = 0;
 
 function App() {
+  const [count, setCount] = useState(counter);
+  let result = [];
+
+  let getCount = (arr) => {
+    result = result.concat(arr);
+    counter = result.reduce(function (acc, cur) {
+      return acc + cur;
+    }, 0);
+    setCount((prevCount) => counter + prevCount);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Navbar count={count} />
+      <ProductList data={productData} getCount={getCount} />
+
     </div>
-  );
+  )
 }
 
 export default App;
